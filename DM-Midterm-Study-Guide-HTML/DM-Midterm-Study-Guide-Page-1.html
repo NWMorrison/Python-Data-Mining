@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body 
+		{
+            font-family: Arial, sans-serif;
+            font-size: 8px;
+            line-height: 1.2;
+            margin: 0;
+            padding: 7px;
+            columns: 6;
+            column-gap: 5px;
+        }
+        h1 { font-size: 8px; margin-top: 0; }
+        h2, h3 { font-size: 8px; margin-top: 3px; margin-bottom: 2px; }
+        ul, ol { margin: 0; padding-left: 10px; }
+        li { margin-bottom: 1px; }
+    </style>
+</head>
+
+<body>
+<h1>Definition: Data mining is the process of extracting non-trivial, hidden, and potentially useful information from large datasets through automatic or semi-automatic methods.</h1>
+
+<h2>Types of Data Mining Tasks</h2>
+<ul>
+    <li><strong>Predictive Tasks</strong>: Use one set of variables to predict unknown or future values of other variables. Examples: classification, regression.</li>
+    <li><strong>Descriptive Tasks</strong>: Discover patterns that provide insight into the underlying structure of the data. Examples: clustering, association rule discovery.</li>
+</ul>
+
+<h2>Challenges in Data Mining</h2>
+<ul>
+    <li><strong>Scalability</strong>: Techniques must handle large datasets efficiently.</li>
+    <li><strong>Dimensionality</strong>: High-dimensional data complicates analysis.</li>
+    <li><strong>Complex Data</strong>: Data may be heterogeneous, with varying formats and distributions.</li>
+    <li><strong>Data Quality</strong>: Ensuring the accuracy and reliability of data, which may contain noise, missing values, or inconsistencies.</li>
+    <li><strong>Privacy and Ethics</strong>: Safeguarding sensitive information and respecting data ownership.</li>
+</ul>
+
+<h2>Applications</h2>
+<p>Data mining is widely used in industries for targeted marketing, fraud detection, personalized recommendations, and scientific research.</p>
+ 
+<h1>Data Exploration</h1>
+<h2>Frequency and Mode</h2>
+<p>The <strong>frequency</strong> of an attribute value is the percentage of time the value occurs in the dataset. For example, if the attribute is 'gender' in a population, 'female' might occur about 50% of the time.</p>
+<p>The <strong>mode</strong> of an attribute is the most frequent attribute value. Frequency and mode are typically used with categorical data.</p>
+
+<h2>Mean and Median</h2>
+<p>The <strong>mean</strong> is the average and is sensitive to outliers. The <strong>median</strong> or a trimmed mean is commonly used as an alternative.</p>
+
+<h2>Range and Variance</h2>
+<p><strong>Range:</strong> The difference between the maximum and minimum values.</p>
+<p><strong>Variance:</strong> Measures the spread of data points.</p>
+
+<h2>Data Visualization</h2>
+<p>Converting data into a visual or tabular format helps in analyzing characteristics and relationships among data attributes.</p>
+<ul>
+    <li>Useful for detecting patterns, trends, outliers, and unusual patterns.</li>
+</ul>
+
+<h2>Visualization Techniques: Scatter Plots</h2>
+<ul>
+    <li>Attributes determine the position of points in the plot.</li>
+    <li>Most common are 2D scatter plots, though 3D plots can also be used.</li>
+    <li>Attributes can be displayed using size, shape, or color of markers.</li>
+</ul>
+
+<h2>Visualization Techniques: Histograms</h2>
+<p>Show the distribution of values of a single variable. Values are divided into bins, with each bin represented by a bar indicating the number of objects in it.</p>
+<p><strong>Example:</strong> Petal width distribution with 10 and 20 bins, respectively.</p>
+
+<p>Discretization: Turning a continuous attribute into a categorical one by dividing the range of values into sub-ranges (buckets or bins).</p>
+<h2>Equal-width Discretization: Divides the range into <em>N</em> sub-ranges of equal size.</h2>
+<p><strong>Example:</strong> If values range from 0 to 100, 5 bins would be:</p>
+<pre>
+[0-20], (20-40], (40-60], (60-80], (80-100]</pre>
+<p>First/last bins may be extended to accommodate all values.</p>
+
+<h2>Equal-frequency Discretization: Divides range into <em>N</em> bins, each holding the same number of instances.</h2>
+<p><strong>Example:</strong> For values 5, 7, 12, 35, 65, 82, 84, 88, 90, 95, creating 5 bins would yield:</p>
+<pre>5, 7 / 12, 35 / 65, 82 / 84, 88 / 90, 95</pre>
+
+<h2>Supervised vs. Unsupervised Discretization: </h2>
+<p>Equal-width and equal-frequency are unsupervised methods. Supervised methods take class values into account (e.g., entropy-based discretization).</p>
+ 
+
+<h3>Data Characteristics and Preprocessing</h3>
+
+<h2>Attributes & Objects</h2>
+<ul>
+    <li><strong>Attribute</strong>: A property||characteristic of an object [The Columns](e.g. variable, field, characteristic, or feature)</li>
+    <li><strong>Object</strong>: A collection of attributes [The Rows](e.g. record, data point, case, sample, entity, or instance)</li>
+    <li><strong>Att. Values</strong>: #'s or Symbols assigned to an attribute.</li>
+	<li><strong>Att. Transformation</strong>: Map entire set of values of a given attribute to new set of replacement values 
+</li>
+	<ul>
+		<li>Distinctions:</li>
+		<li>Same attributes can be mapped to different attribute values (e.g. height->feet||yards)</li>
+		<li>Different attributes can be mapped to same set values, but properties of att. values can be different (e.g. I.D. has no limit but age does)</li>
+	</ul>
+
+</ul>
+
+<h2>Discrete Vs. Continuous Attributes</h2>
+<ul>
+	<li><strong>Discrete</strong>: Finite||Countably infinite set of values, usually represented as integer vars. [Binary Attr. are special cases]</li>
+    <li><strong>Continuous</strong>: Real #'s as attribute values, which can only be measured using a finite # of digits, represented as float vars</li>
+</ul>
+
+<h2>Types of Attributes</h2>
+<ul>
+    <li><strong>Record Data</strong>: Consists of a collection of records, each of which consists of a fixed set of attributes.</li>
+	<ul>
+	<li><strong>Data Matrix</strong>: Objects w/ fixed set of numeric attributes [M(rows) x N(columns) matrix]</li>
+    <li><strong>Document</strong>: becomes a "term" vector, where each term is an attribute of the vector, the value corresponds to how many times a term occurs</li>
+	<li><strong>Transaction</strong>: Each record involves a set of items (e.g. Grocery Store)</li>
+	</ul>
+    <li><strong>Graph Data</strong> (e.g. Linked Web Pages, Benzene Molcule Structures, World Wide Web)</li>
+    <li><strong>Ordered Data</strong>(e.g. Spatial & Temporal(Avg. temp of Ocean & Land), Genetic Sequence(GGTTCCC), Sequential)</li>
+</ul>
+
+<h2>Types of Data Sets</h2>
+<ul>
+    <li><strong>Nominal</strong>: Categorical with no intrinsic order (e.g., color, gender).</li>
+    <li><strong>Ordinal</strong>: Categorical with a meaningful order (e.g., rankings, grades, height).</li>
+    <li><strong>Interval</strong>: Quantitative with meaningful differences but no true zero (e.g., temperature in Celsius, calendar dates).</li>
+    <li><strong>Ratio</strong>: Quantitative with meaningful ratios and a true zero (e.g., age, income).</li>
+</ul>
+
+<h2>Data Quality</h2>
+<ul>
+    <li><strong>Noise</strong>: Random variations or errors that distort data.</li>
+	<li><strong>Outliers</strong>: Objects w/ characteristics that are considerably different than most of the other data objects in the data set.</li>
+    <li><strong>Missing Values</strong>: Gaps in data that can result from incomplete collection or unavailability. (e.g. Elim. Data, Est. Missing Values)</li>
+    <li><strong>Duplicate Data</strong>: Redundant entries that may lead to biased analysis. (e.g.)</li>
+</ul>
+<p><strong>Preprocessing Methods</strong>:</p>
+<ul>
+    <li>Normalization/Binarization: Scaling attributes to a standard range, often [0,1], for consistency in comparisons.</li>
+</ul>
+ 
+
+<h3>[5] Core Data Mining Tasks and Concepts</h3>
+
+<h3>1. Classification (Predictive Task)</h3>
+<p><strong>Goal</strong>: Categorize data points into predefined classes.</p>
+<p><strong>Process</strong>: Use a labeled training set to create a model that can predict the class label of new, unseen records (test set). Must be categorical data.</p>
+<p><strong>Applications</strong>:</p>
+<ul>
+    <li>Direct Marketing: Target marketing campaigns by predicting consumer purchasing likelihood.</li>
+    <li>Fraud Detection: Identify fraudulent transactions in credit card data.</li>
+    <li>Medical Diagnosis: Predict whether cells are benign or malignant based on features.</li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul>
+    <li>Training Set(contains attri. values & class labels): Data used to build the model.</li>
+    <li>Test Set: Data used to evaluate model accuracy.</li>
+    <li>Metrics: Accuracy, precision, recall, F1 score, and confusion matrix.</li>
+	<li>Training & Generalization(Testing) Errors</li>
+    <li>Evaluation Methods: Holdout, cross-validation, and leave-one-out.</li>
+</ul>
+
+<h3>Metrics and Validation</h3>
+
+<p><strong>Performance Metrics</strong>:</p>
+<ul>
+    <li><strong>Confusion Matrix</strong>: Breaks down true positives, false positives, true negatives, and false negatives.</li>
+    <li><strong>Accuracy & Error Rate</strong>: Accuracy[TP+TN/TP+TN+FP+FN] is the percentage of correctly classified instances; Error[FP+FN/TP+TN+FP+FN] is the percentage of error.</li>
+    <li><strong>Precision and Recall</strong>: Precision[TP/TP+FP] is the ratio of true positives to all predicted positives; Recall[TP/TP+FN] is the ratio of true positives to all actual positives.</li>
+    <li><strong>F1 Score</strong>: Harmonic mean of precision and recall, balancing the two metrics.</li>
+</ul>
+
+
+<p><strong>Validation Techniques</strong>:</p>
+<ul>
+    <li><strong>Holdout Method</strong>: Split the data into training and testing sets; often uses a 2/3 training, 1/3 testing ratio.</li>
+    <li><strong>k-Fold Cross-Validation</strong>: Divides data into k subsets, training on k−1 subsets and testing on the remaining subset iteratively.</li>
+    <li><strong>Leave-One-Out Cross-Validation</strong>: Uses each data point as a test set in an n-fold cross-validation, where n is the number of instances in the dataset.</li>
+</ul>
+
+
+<h3>2. Clustering (Descriptive Task)</h3>
+<p><strong>Goal</strong>: Group data points into clusters based on similarity.</p>
+<p><strong>Process</strong>: Unlike classification, clustering is unsupervised, meaning no predefined labels are assigned to the data.</p>
+<p><strong>Applications</strong>:</p>
+<ul>
+    <li>Market Segmentation: Group customers by similar purchasing behaviors.</li>
+    <li>Document Clustering: Cluster similar documents to streamline information retrieval.</li>
+    <li>Biological Data: Cluster genes with similar expressions for further biological study.</li>
+</ul>
+<p><strong>Key Techniques</strong>:</p>
+<ul>
+    <li>K-means Clustering: Divides data into K clusters based on centroids.</li>
+    <li>Hierarchical Clustering: Builds a nested structure of clusters in a tree format.</li>
+    <li>Density-Based Clustering (e.g., DBSCAN): Forms clusters based on dense areas in the data space, handling irregular shapes and noise.</li>
+</ul>
+
+<h3>What is Cluster Analysis?</h3>
+<p>Finding groups of objects such that objects in a group are similar to each other and different from those in other groups.</p>
+<p>Intra-Cluster distances are minimized where Inter-Cluster distances are maximized</p>
+
+<h2>Applications of Cluster Analysis</h2>
+<ul>
+    <li>Understanding, grouping:
+        <ul>
+            <li>Group related documents for browsing</li>
+            <li>Group genes and proteins by function</li>
+            <li>Group stocks with similar price fluctuations</li>
+        </ul>
+    </li>
+    <li>Summarization, compression:
+        <ul>
+            <li>Reduce size of large datasets</li>
+            <li>Example: clustering precipitation data in Australia</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>What is Not Cluster Analysis?</h2>
+<ul>
+    <li>Supervised classification (requires class labels)</li>
+    <li>Simple segmentation (e.g., grouping students by last name)</li>
+    <li>External specifications (e.g., query results)</li>
+</ul>
+
+<h3>Types of Clusterings</h3>
+<ul>
+    <li><strong>Partitional Clustering</strong>: Divides data into non-overlapping clusters.</li>
+    <li><strong>Hierarchical Clustering</strong>: Organizes clusters in a hierarchical tree.</li>
+</ul>
+
+<h2>Types of Clusters</h2>
+<ul>
+    <li><strong>Center-Based Clusters</strong>: Defined by closeness to a central point (centroid or medoid).
+        <ul>
+            <li>Centroid: mean of all points in the cluster (continuous)</li>
+            <li>Medoid (PartitioningAroundMedoids): the most representative point (categorical)</li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Characteristics of Data for Clustering</h2>
+<ul>
+    <li>Type of proximity or density measure</li>
+    <li>Attribute type</li>
+    <li>Data sparsity</li>
+    <li>Dimensionality</li>
+	<li>Similarity</li>
+</ul>
+
+<h3>3. Association Rule Discovery (Descriptive Task)</h3>
+<p><strong>Goal</strong>: Identify relationships among a set of items in transactional data. (e.g. {bagels=Antecedent}->{Chips=Consequent})</p>
+<p><strong>Process</strong>: Derives rules that show how the occurrence of one item can imply the occurrence of another (e.g., market basket analysis).</p>
+<p><strong>Applications</strong>:</p>
+<ul>
+    <li>Retail: Identify products that are frequently bought together, such as “If diapers and milk are purchased, then beer is likely to be purchased.”</li>
+    <li>Marketing and Sales: Understand customer purchase behaviors to inform inventory placement and promotion strategies.</li>
+</ul>
+<p><strong>Key Concepts</strong>:</p>
+<ul>
+    <li>Support: Frequency of an itemset in the dataset.</li>
+    <li>Confidence: Probability that an item will be bought given that another item has been bought.</li>
+    <li>Lift: Measures the strength of association by comparing with a baseline probability.</li>
+</ul>
+
+<h3>4. Deviation (Anomaly) Detection</h3>
+<p><strong>Goal</strong>: Identify significant deviations from normal data patterns.</p>
+<p><strong>Applications</strong>:</p>
+<ul>
+    <li>Network Security: Detect unusual traffic patterns that may indicate an intrusion.</li>
+    <li>Finance: Spot fraudulent credit card transactions.</li>
+</ul>
+<p><strong>Key Concepts</strong>: Outliers: Data points that significantly differ from other observations, often indicative of rare events.</p>
+
+<h3>5. Regression (Predictive Task)</h3>
+<p><strong>Goal</strong>: Predict a continuous target variable based on one or more predictor variables.</p>
+<p><strong>Applications</strong>:</p>
+<ul>
+    <li>Sales Prediction: Forecast sales based on advertising spending.</li>
+    <li>Stock Market Analysis: Predict stock prices based on historical data and influencing factors.</li>
+</ul>
+
+ 
+ 
+<h3>[3] Data Mining Algorithms</h3>
+
+<h3>Euclidean Distance (K-Means & K-NN)</h3>
+<p><strong>D = [(X2-X1)^2 + (Y2-Y1)^2]^1/2</strong></p>
+
+
+<h3>[1] K-Means Clustering [K x N]</h3>
+<p><strong>Definition</strong>: Partitional clustering method based on centroid assignment.</p>
+<p><strong>Steps</strong>:</p>
+<ol>
+    <li>Initialize K centroids (can be random).</li>
+    <li>Assign each data point to the nearest centroid.</li>
+    <li>Recalculate centroids as the mean of assigned points.</li>
+    <li>Repeat until clusters stabilize.</li>
+	<li>Minimizing <strong>Sum of Squared Error(SSE):</strong> The distance to the nearest cluster;(Square the errors then sum)</li>
+</ol>
+<p><strong>General Questions</strong>:</p>
+<ol>
+    <li>What is k in k-means? Is it set by the algorithm or the user? Ans.) “K” is equal to the number of clusters/centroids (can be changed/set depending on what you’re looking for.</li>
+    <li>What is a centroid in k-means? How many centroids are there in k-means? Ans.) The centroid is the mean of points in a given cluster. How many depends on when the number of centroids no longer change in our algorithm.</li>
+    <li>In k-means, we calculate the distance from each point to what? Ans.) To its nearest centroid. [Sum of Squared Error]</li>
+    <li>K-means has several iterations. Is the number of iterations fixed? When does k-means terminate? Ans.) Termination occurs when our amount of centroids no longer change.</li>
+	<li>Why do the centroids move in the plot? What makes them move? Ans.) They move because after your distance calculations, your centroid will change as a result, so you will of course gain a new centroid.</li>
+	<li>What is the Elbow Method? Ans.) The method consists of plotting the explained variation as a function of the number of clusters and picking the elbow of the curve as the number of clusters to use.</li>
+</ol>
+<p><strong>Applications</strong>:</p>
+<ul>
+    <li>Image Compression: Reduces color palette by clustering similar colors.</li>
+    <li>Customer Segmentation: Groups customers based on purchasing patterns.</li>
+</ul>
+<p><strong>Processing</strong>:</p>
+<ul>
+    <p>Pre: Normalizes the data & elim. outliers</p>
+    <p>Post: Elim. small clusters that may represent outliers, split loose cluster (high SSE), merge clusters that are close (low SSE)</p>
+</ul>
+<p><strong>Challenges</strong>: Choosing the initial centroids and optimal K value. Sensitivity to outliers and non-spherical cluster shapes.</p>
+
+<h3>[2] K-Nearest Neighbors (k-NN [Classification])</h3>
+<p><strong>Definition</strong>: 'k' stands for nearest neighbor; Classifies a new data point based on the labels of the k closest points in the training data.</p>
+<p><strong>Steps</strong>:</p>
+<ol>
+    <li>Calculate the distance from the new data (test) point to all (training) data points.(distances or similarities between records)</li>
+    <li>Select the k nearest neighbors.</li>
+    <li>Assign the label based on the majority vote among neighbors (or weighted by distance).</li>
+</ol>
+<p><strong>Determining Class Label of X</strong>:</p>
+<p>Find the label that is the majority vote in the KNN Labels, then weight each vote according to the distance of each neighbor(1/dis(x,xi)^2)</p>
+<p><strong>Applications</strong>:</p>
+<ul>
+	<li>Voronoi Diagram: W/ 1-Nearest Neighbor, the diagram are jagged lines surrounding its respective area</li>
+	<li>Lazy Learner: Does not build a model explicitly</li>
+    <li>Recommender Systems: Suggest products based on similar users.</li>
+    <li>Pattern Recognition: Used in fields like image recognition and speech recognition.</li>
+</ul>
+<p><strong>Challenges</strong>: Choosing the optimal k value(Too small->noise point sensitivity, Too Large-> may include points from other classes. Managing high-dimensional data, where distance calculations may become less meaningful. Scaling:Attributes may have to be scaled to prevent distance measures from being dominated by one of the attributes
+  Solution: Linearize the range of the scale</p>
+
+<h3>[3] Naïve Bayes Classifier</h3>
+<p><strong>Definition</strong>: A probabilistic model that applies Bayes’ theorem with the assumption of conditional independence between features.</p>
+<p><strong>Process</strong>:</p>
+<ol>
+    <li>Calculate the prior probability of each class.</li>
+    <li>Calculate the conditional probability for each attribute value given the class.</li>
+    <li>Multiply these probabilities and choose the class with the highest posterior probability.</li>
+</ol>
+<p><strong>Applications</strong>:</p>
+<ul>
+    <li>Text Classification: Spam filtering, sentiment analysis.</li>
+    <li>Medical Diagnosis: Classifying diseases based on symptoms.</li>
+</ul>
+<p><strong>Strengths and Limitations</strong>: Effective with large datasets, robust to noise. Assumption of feature independence may not always hold, which can affect accuracy.</p>
+
+ 
+</body>
+</html>
